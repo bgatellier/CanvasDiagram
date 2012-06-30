@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+	<meta charset="utf-8"/>
+	<title>HTML5 Canvas diagram</title>
+	
+	<link rel="stylesheet" href="css/canvas.css"/>
+	
+	<script charset="utf-8" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.2.min.js"></script>
+	<script charset="utf-8" src="js/canvas.js"></script>
+	<script charset="utf-8">
+	//<![CDATA[
+		$(document).ready(function(){
+			/*
+			 * Update the diagram according to the selected data.
+			 * @param $_box Box of the table that contains the link where the user clicked
+			 */
+			function selectData($_box){
+				var highlightColor = '#e6d9bd';
+				
+				// Must have only one parent of the select type, so the result (parents().length) will be 1 or 0
+				var hasParentThead = $_box.parents('thead').length;
+				var hasParentTbody = $_box.parents('tbody').length;
+				
+				// Remove the previous selected boxes
+				$('#exemple_stats th, #exemple_stats td').css('background-color', 'transparent');
+				// Highlight the one that contains the link
+				$_box.css('background-color', highlightColor);
+				
+				var data = new Array();
+				if(hasParentThead){	// Highlight column
+					var $_boxIndex = $_box.index();
+
+					$_box.parents('table').each(function(){
+						$(this).find('tbody tr').each(function(){
+							$(this).children().each(function(index){
+								if(index==$_boxIndex){
+									// Highlight box
+									$(this).css('background-color', highlightColor);
+									// Collect value
+									data.push($(this).find('input').attr('value'));
+								}
+							});
+						});
+					});
+				}
+				else if(hasParentTbody){	// Highlight row
+					$_box.parent().children('td').each(function(){
+						// Highlight box
+						$(this).css('background-color', highlightColor);
+						// Collect value
+						data.push($(this).find('input').attr('value'));
+					})
+				}
+				
+				updateDiagram('cnv_stats', data);
+			}
+			
+			/*
+			$('#exemple_roadster input[type=button]').bind('click', function(){
+				drawRoadster();
+			});
+			*/
+			
+			$('#exemple_stats input').bind('keyup', function(){
+				selectData($(this).parent());
+			});
+			$('#exemple_stats a').bind('click', function(){
+				var classNameVisible = 'stats-visible';
+				
+				if(!$(this).hasClass(classNameVisible)){
+					$('#exemple_stats a').each(function(){
+						$(this).removeAttr('class');
+						$(this).attr('title', 'Show in the diagram');
+					});
+					$(this).attr('class', classNameVisible);
+					
+					selectData($(this).parent());
+				}
+			});
+			
+			$('#exemple_stats thead th:first a').click();
+		});
+	//]]>
+	</script>
+</head>
+<body>
+	<article>
+		<!-- 
+		<section id="exemple_roadster">
+			<canvas id="cnv_roadster">Sorry, but your web browser doesn't support this feature (HTML5 Canvas API). It's time to try <a href="http://www.mozilla-europe.org/fr/firefox/">Mozilla Firefox</a> !</canvas>
+			<p>
+				<input type="button" value="Draw the unbelievable roadster"/>
+			</p>
+		</section>
+		 -->
+		<section id="exemple_stats">
+			<form id="movieTickets" action="?" method="post">
+				<table>
+					<caption>Audience in the french cinemas (in millions of tickets).</caption>
+					<thead>
+						<tr>
+							<td>&nbsp;</td>
+							<th><a href="#">2010</a></th>
+							<th><a href="#">2009</a></th>
+							<th><a href="#">2008</a></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th><a href="#">January</a></th>
+							<td><input type="text" value="18.8"/></td>
+							<td><input type="text" value="15.3"/></td>
+							<td><input type="text" value="14.9"/></td>
+						</tr>
+						<tr>
+							<th><a href="#">February</a></th>
+							<td><input type="text" value="20.6"/></td>
+							<td><input type="text" value="19.1"/></td>
+							<td><input type="text" value="20.6"/></td>
+						</tr>
+						<tr>
+							<th><a href="#">March</a></th>
+							<td><input type="text" value="18.8"/></td>
+							<td><input type="text" value="17.8"/></td>
+							<td><input type="text" value="27.2"/></td>
+						</tr>
+						<tr>
+							<th><a href="#">April</a></th>
+							<td><input type="text" value="18.6"/></td>
+							<td><input type="text" value="17.4"/></td>
+							<td><input type="text" value="15.7"/></td>
+						</tr>
+						<tr>
+							<th><a href="#">May</a></th>
+							<td><input type="text" value="16.0"/></td>
+							<td><input type="text" value="14.9"/></td>
+							<td><input type="text" value="12.5"/></td>
+						</tr>
+						<tr>
+							<th><a href="#">June</a></th>
+							<td><input type="text" value="10.9"/></td>
+							<td><input type="text" value="11.2"/></td>
+							<td><input type="text" value="10.9"/></td>
+						</tr>
+						<tr>
+							<th><a href="#">July</a></th>
+							<td><input type="text" value="18.6"/></td>
+							<td><input type="text" value="20.9"/></td>
+							<td><input type="text" value="13.3"/></td>
+						</tr>
+						<tr>
+							<th><a href="#">August</a></th>
+							<td><input type="text" value="16.8"/></td>
+							<td><input type="text" value="15.1"/></td>
+							<td><input type="text" value="14.8"/></td>
+						</tr>
+						<tr>
+							<th><a href="#">September</a></th>
+							<td><input type="text" value="10.6"/></td>
+							<td><input type="text" value="10.5"/></td>
+							<td><input type="text" value="9.8"/></td>
+						</tr>
+						<tr>
+							<th><a href="#">October</a></th>
+							<td><input type="text" value="18.5"/></td>
+							<td><input type="text" value="15.8"/></td>
+							<td><input type="text" value="14.4"/></td>
+						</tr>
+						<tr>
+							<th><a href="#">November</a></th>
+							<td><input type="text" value="19.2"/></td>
+							<td><input type="text" value="21.0"/></td>
+							<td><input type="text" value="18.2"/></td>
+						</tr>
+						<tr>
+							<th><a href="#">December</a></th>
+							<td><input type="text" value="19.1"/></td>
+							<td><input type="text" value="22.5"/></td>
+							<td><input type="text" value="17.9"/></td>
+						</tr>
+					</tbody>
+				</table>
+			</form>
+			<canvas id="cnv_stats">Sorry, but your web browser doesn't support this feature (HTML5 Canvas API). It's time to try <a href="http://www.mozilla-europe.org/fr/firefox/">Mozilla Firefox</a> !</canvas>
+		</section>
+	</article>
+</body>
+</html>

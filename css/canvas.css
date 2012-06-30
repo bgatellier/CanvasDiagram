@@ -1,0 +1,169 @@
+a:active,
+a:active>*{
+	position: relative; top: 1px;
+}
+body{
+	/*background: #45302B;*/ /* chocolat */;
+	/*background: #ccc188;*/ /* beige vert */
+	/*background: #ceb487;*/ /* beige */
+	background: #C8AD7F; /* beige */
+	/*background: #d0b173;*/ /* jaune sable */
+	/*background: #dfcea1;*/ /* ivoire */
+	/*background: #e6d9bd; /* ivoire clair */
+	/*background: #b5b5a7;*/ /* gris chaud */
+	display: table;
+	font: .9em/100% Verdana,sans-serif;
+	height: 100%;
+	letter-spacing: 0;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+}
+em{
+	font-style: italic;
+}
+fieldset{
+	border: none;
+	margin: 0;
+	padding: 0;
+}
+form{
+	margin: 0;
+	padding: 0;
+}
+h1{
+	font-size: 1.4em;
+	line-height: 100%;
+	margin: 0 0 1em;
+}
+h2{
+	font-size: 1.2em;
+	line-height: 100%;
+	margin: 0 0 1em;
+}
+h3{
+	font-size: 1.15em;
+	line-height: 100%;
+	margin: 0 0 1em;
+}
+h4{
+	font-size: 1.1em;
+	line-height: 100%;
+	margin: 0 0 1em;
+}
+h5{
+	font-size: 1.05em;
+	line-height: 100%;
+	margin: 0 0 1em;
+}
+h6{
+	font-size: 1em;
+	line-height: 100%;
+	margin: 0 0 1em;
+}
+html{
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+img{
+	border: none;
+	vertical-align: middle;
+}
+input{
+	font: inherit;
+	line-height: 100%;
+}
+p{
+	margin: 0 0 1em;
+}
+p:last-of-type{
+	margin-bottom: 0;
+}
+p.info{
+	color: gray;
+	font-style: italic;
+	text-align: center;
+}
+strong{
+	font-weight: bold;
+}
+ul{
+	margin: 0;
+	padding: 0;
+}
+article{
+	margin: 0 auto;
+	width: 960px;
+}
+article:first-child{
+	margin-top: 3em;
+}
+article:last-child{
+	margin-bottom: 3em;
+}
+article a{
+	color: #45302B;
+	text-decoration: none;
+}
+canvas{
+	border: solid 1px #000;
+}
+section{
+}
+section>*{
+	display: inline-block;
+	margin: .5em;
+	vertical-align: top;
+}
+
+
+#movieTickets table{
+	border-collapse: collapse;
+}
+#movieTickets tr>*{
+	border-color: #000;
+	border-width: 1px;
+}
+#movieTickets thead th{
+	border-top-style: solid;
+}
+#movieTickets th a{
+	display: block;
+	padding: .5em 1em;
+}
+#movieTickets th a:before{
+	margin-right: .5em;
+	vertical-align: top;
+}
+#movieTickets th a:before{
+	content: url(../pic/chart-desaturated.png);
+}
+#movieTickets th a.stats-visible:before{
+	content: url(../pic/chart.png);
+}
+#movieTickets tr>*:first-child,
+#movieTickets tr>*:last-child{
+	border-right-style: solid;
+}
+#movieTickets thead tr:last-child>*,
+#movieTickets tbody tr:last-child>*{
+	border-bottom-style: solid;
+}
+#movieTickets tbody th{
+	border-left-style: solid;
+	text-align: left;
+}
+#movieTickets tbody td{
+	padding: .5em;
+}
+
+
+#movieTickets caption{
+	caption-side: bottom;
+	margin-top: .5em;
+}
+#movieTickets input{
+	text-align: right;
+	width: 80px;
+}
