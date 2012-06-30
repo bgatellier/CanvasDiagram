@@ -38,18 +38,24 @@
 									// Highlight box
 									$(this).css('background-color', highlightColor);
 									// Collect value
-									data.push($(this).find('input').attr('value'));
+									var dataSingleValue = $(this).find('input').attr('value');
+									if(dataSingleValue!==undefined){
+										data.push(dataSingleValue);
+									}
 								}
 							});
 						});
 					});
 				}
 				else if(hasParentTbody){	// Highlight row
-					$_box.parent().children('td').each(function(){
+					$_box.parent().children().each(function(){
 						// Highlight box
 						$(this).css('background-color', highlightColor);
 						// Collect value
-						data.push($(this).find('input').attr('value'));
+						var dataSingleValue = $(this).find('input').attr('value');
+						if(dataSingleValue!==undefined){
+							data.push(dataSingleValue);
+						}
 					})
 				}
 				
